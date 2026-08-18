@@ -13,8 +13,6 @@ export default function IdentifyScreen() {
     return () => clearTimeout(timer);
   }, []);
 
-  const goBackToPhoto = () => router.back();
-
   if (!photoUri) {
     return (
       <View style={styles.emptyState}>
@@ -30,7 +28,7 @@ export default function IdentifyScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <Pressable style={styles.backButton} onPress={goBackToPhoto}>
+        <Pressable style={styles.backButton} onPress={() => router.back()}>
           <Text style={styles.backText}>←</Text>
         </Pressable>
         <View>
@@ -42,9 +40,7 @@ export default function IdentifyScreen() {
 
       <View style={styles.photoWrap}>
         <Image source={{ uri: photoUri }} style={styles.photo} resizeMode="cover" />
-        <View style={styles.photoBadge}>
-          <Text style={styles.photoBadgeText}>YOUR PHOTO</Text>
-        </View>
+        <View style={styles.photoBadge}><Text style={styles.photoBadgeText}>YOUR PHOTO</Text></View>
       </View>
 
       <View style={styles.resultPanel}>
@@ -55,27 +51,16 @@ export default function IdentifyScreen() {
               <Text style={styles.analyzingText}>Analyzing your discovery…</Text>
             </View>
             <Text style={styles.resultTitle}>Looking closely.</Text>
-            <Text style={styles.resultText}>
-              Stage 1 uses placeholder identification. Real AI vision comes next.
-            </Text>
+            <Text style={styles.resultText}>Checking the photographed subject. Real AI vision will replace this preview next.</Text>
           </>
         ) : (
           <>
-            <Text style={styles.resultLabel}>IDENTIFIED</Text>
+            <Text style={styles.resultLabel}>DEMO IDENTIFICATION</Text>
             <Text style={styles.resultTitle}>🐇 Rabbit</Text>
             <Text style={styles.category}>Animal</Text>
-            <Text style={styles.resultText}>
-              This is a temporary local result. Your photographed image is the discovery source.
-            </Text>
-
-            <Pressable
-              style={[styles.addButton, added && styles.addedButton]}
-              onPress={() => setAdded(true)}
-              disabled={added}
-            >
-              <Text style={[styles.addButtonText, added && styles.addedButtonText]}>
-                {added ? 'Discovery Added ✓' : 'Add Discovery'}
-              </Text>
+            <Text style={styles.resultText}>This is a temporary local result. Your photograph remains the source of the discovery.</Text>
+            <Pressable style={[styles.addButton, added && styles.addedButton]} onPress={() => setAdded(true)} disabled={added}>
+              <Text style={[styles.addButtonText, added && styles.addedButtonText]}>{added ? 'Discovery Added ✓' : 'Add Discovery'}</Text>
             </Pressable>
           </>
         )}
