@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Mybreed",
+    "slug": "mybreed",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "mybreed",
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
