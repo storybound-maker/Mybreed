@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
@@ -11,16 +12,32 @@ export default function HomeScreen() {
         </Text>
       </View>
 
+      <View style={styles.discoveryCard}>
+        <View style={styles.iconCircle}>
+          <Text style={styles.icon}>＋</Text>
+        </View>
+        <View style={styles.discoveryCopy}>
+          <Text style={styles.cardTitle}>Make your first discovery</Text>
+          <Text style={styles.cardText}>
+            Photograph an animal or plant you find in the real world.
+          </Text>
+        </View>
+      </View>
+
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Your Farm</Text>
+        <Text style={styles.cardLabel}>MY FARM</Text>
+        <Text style={styles.cardTitle}>Nothing living here yet.</Text>
         <Text style={styles.cardText}>
-          Your living discoveries will appear here. Your first Breed is waiting.
+          Your Breeds will appear here after you create your first fusion.
         </Text>
       </View>
 
-      <Pressable style={styles.button} onPress={() => {}}>
-        <Text style={styles.buttonText}>Start discovering</Text>
-      </Pressable>
+      <Link href="/discover" asChild>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Start discovering</Text>
+          <Text style={styles.arrow}>→</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 }
@@ -32,9 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 72,
   },
-  hero: {
-    marginBottom: 32,
-  },
+  hero: { marginBottom: 30 },
   eyebrow: {
     fontSize: 13,
     fontWeight: '800',
@@ -55,6 +70,25 @@ const styles = StyleSheet.create({
     color: '#5D665B',
     maxWidth: 330,
   },
+  discoveryCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 24,
+    backgroundColor: '#E7EBDD',
+    padding: 18,
+    marginBottom: 16,
+  },
+  iconCircle: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: '#182018',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 14,
+  },
+  icon: { color: '#FFFFFF', fontSize: 26, fontWeight: '300' },
+  discoveryCopy: { flex: 1 },
   card: {
     borderRadius: 24,
     backgroundColor: '#FFFFFF',
@@ -63,27 +97,32 @@ const styles = StyleSheet.create({
     borderColor: '#E5E2D8',
     marginBottom: 20,
   },
+  cardLabel: {
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 2,
+    color: '#7A8177',
+    marginBottom: 8,
+  },
   cardTitle: {
-    fontSize: 24,
+    fontSize: 21,
     fontWeight: '700',
     color: '#182018',
   },
   cardText: {
-    marginTop: 8,
+    marginTop: 7,
     fontSize: 15,
     lineHeight: 22,
     color: '#697168',
   },
   button: {
-    minHeight: 56,
+    minHeight: 58,
     borderRadius: 18,
     backgroundColor: '#182018',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '700',
-  },
+  buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: '700' },
+  arrow: { color: '#FFFFFF', fontSize: 21, marginLeft: 10 },
 });
