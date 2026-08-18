@@ -1,5 +1,5 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { useRef, useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -8,6 +8,7 @@ export default function DiscoverScreen() {
   const [facing, setFacing] = useState<'back' | 'front'>('back');
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const cameraRef = useRef<CameraView>(null);
+  const router = useRouter();
 
   if (!permission) {
     return <View style={styles.loading}><Text>Preparing camera…</Text></View>;
@@ -70,7 +71,10 @@ export default function DiscoverScreen() {
             <Pressable style={styles.secondaryButton} onPress={retakePhoto}>
               <Text style={styles.secondaryButtonText}>Retake</Text>
             </Pressable>
-            <Pressable style={styles.primaryButton} onPress={() => {}}>
+            <Pressable
+              style={styles.primaryButton}
+              onPress={() => router.push({ pathname: '/identify', params: { photoUri } })}
+            >
               <Text style={styles.primaryButtonText}>Identify</Text>
               <Text style={styles.primaryArrow}>→</Text>
             </Pressable>
